@@ -273,6 +273,7 @@ stream = ExtResource("3_aq87s")
 [node name="Boss_Door" parent="." instance=ExtResource("6_i3ivd")]
 position = Vector2(9727, 218)
 script = ExtResource("7_aq87s")
+next_scene_path = "res://Scenes/boss_room.tscn"
 
 [node name="SkeletonEnemy" parent="." instance=ExtResource("8_dq232")]
 position = Vector2(5729, 616)

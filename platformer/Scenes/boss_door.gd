@@ -1,7 +1,7 @@
 extends Area2D
 
 # Path to the next scene
-@export var next_scene_path := "res://Scenes/boos_room.tscn"
+@export var next_scene_path := "res://Scenes/boss_room.tscn"
 
 
 # Optional: Play door opening animation
