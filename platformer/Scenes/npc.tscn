@@ -1,0 +1,143 @@
+[gd_scene load_steps=16 format=3 uid="uid://d32tl21kgxxu7"]
+
+[ext_resource type="Script" uid="uid://b2oienvpumst7" path="res://Scenes/npc.gd" id="1_acqhf"]
+[ext_resource type="Texture2D" uid="uid://c5hahi0j437gy" path="res://Assets/Sprites/8 - NPC Witch/pixilart-sprite.png" id="2_xxsvc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6unj"]
+atlas = ExtResource("2_xxsvc")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1ryf"]
+atlas = ExtResource("2_xxsvc")
+region = Rect2(120, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ig1v"]
+atlas = ExtResource("2_xxsvc")
+region = Rect2(240, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6atyd"]
+atlas = ExtResource("2_xxsvc")
+region = Rect2(360, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xkex"]
+atlas = ExtResource("2_xxsvc")
+region = Rect2(480, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gudg"]
+atlas = ExtResource("2_xxsvc")
+region = Rect2(600, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qi7up"]
+atlas = ExtResource("2_xxsvc")
+region = Rect2(720, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6nw3"]
+atlas = ExtResource("2_xxsvc")
+region = Rect2(840, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4syp"]
+atlas = ExtResource("2_xxsvc")
+region = Rect2(960, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f10bm"]
+atlas = ExtResource("2_xxsvc")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_npc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6unj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1ryf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ig1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6atyd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xkex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gudg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qi7up")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6nw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4syp")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f10bm")
+}],
+"loop": true,
+"name": &"interacted",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_interact"]
+radius = 64.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxsvc"]
+size = Vector2(258, 196)
+
+[node name="NPC" type="CharacterBody2D"]
+script = ExtResource("1_acqhf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-5, 15.5)
+scale = Vector2(1.2, 1.171)
+sprite_frames = SubResource("SpriteFrames_npc")
+animation = &"interacted"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, 18)
+shape = SubResource("CircleShape2D_interact")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(-18, 23)
+shape = SubResource("RectangleShape2D_xxsvc")
+
+[node name="InteractionPrompt" type="Label" parent="."]
+offset_left = -60.0
+offset_top = -80.0
+offset_right = 60.0
+offset_bottom = -54.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 14
+text = "Press E to interact"
+horizontal_alignment = 1
+
+[node name="DialoguePanel" type="PanelContainer" parent="."]
+offset_left = -150.0
+offset_top = -140.0
+offset_right = 150.0
+offset_bottom = -60.0
+
+[node name="MarginContainer" type="MarginContainer" parent="DialoguePanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="DialogueLabel" type="Label" parent="DialoguePanel/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Hello, traveler! Welcome to my humble village."
+autowrap_mode = 3
